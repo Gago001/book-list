@@ -23,11 +23,10 @@ div {
     position: relative;
     overflow: hidden;
 }
-
 div::before {
     content: '';
     position: absolute;
-    top: -150px; 
+    top: -150px;
     left: -150px;
     width: 200px;
     height: 200px;
@@ -47,6 +46,10 @@ div::before {
     100% {
         transform: translate(0, 0);
     }
+}
+h1, h2 {
+    position: relative;
+    z-index: 1; 
 }
 
 h1 {
@@ -123,6 +126,7 @@ button:hover {
     border-radius: 12px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
+    z-index: 1;
 }
 
 .box-list:hover {
@@ -140,7 +144,6 @@ button:hover {
 ul {
     padding: 0;
     margin: 0;
-    z-index: 1;
 }
 
 button {
@@ -151,4 +154,104 @@ button {
 
 h2 {
     margin-bottom: 30px;
+}
+
+
+@media screen and (max-width: 390px) {
+    body {
+        padding: 20px;
+    }
+
+    div {
+        padding: 20px; 
+        z-index: 1;
+    }
+
+    h1 {
+        font-size: 2rem;
+        z-index: 1;
+    }
+
+    h2 {
+        z-index: 2;
+        font-size: 1.2rem;
+    }
+
+    .inputs {
+        gap: 15px;
+        z-index: 1;
+    }
+
+    input[type="search"],
+    input[type="text"] {
+        padding: 10px; 
+        font-size: 1rem;
+    }
+
+    button {
+        padding: 10px 20px; 
+        font-size: 1rem;
+    }
+
+    .box {
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .box-list {
+        padding: 15px;
+    }
+
+    .box-list-items {
+        font-size: 1rem;
+    }
+}
+
+
+
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 0.9rem;
+    }
+
+    div {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        z-index: 2;
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    div {
+        max-width: 600px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    div::before {
+        top: -80px; 
+        left: -80px; 
+        width: 120px; 
+        height: 120px; 
+        animation: bubble 6s ease-in-out infinite; 
+    }
+
+    @keyframes bubble {
+        0% {
+            transform: translate(0, 0);
+        }
+        50% {
+            transform: translate(50px, 50px);
+        }
+        100% {
+            transform: translate(0, 0);
+        }
+    }
 }
