@@ -7,7 +7,7 @@ export const handleBook = (newBook) => {
             payload: newBook,
         };
     }
-    return null; // Возвращаем null, если данные некорректны
+    return null;
 };
 
 export const handleDelete = (index) => {
