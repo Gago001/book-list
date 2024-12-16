@@ -1,29 +1,26 @@
-import React, { useReducer, useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import './book-list.css';
-import { bookReducer } from './reducers';
+import { useSelector, useDispatch } from 'react-redux';
 import { handleBook, handleDelete } from './actions';
 
 export default function Booklist() {
     const [newBook, setNewBook] = useState({ title: '', author: '', genre: '' });
     const [search, setSearch] = useState('');
-    const [books, dispatch] = useReducer(bookReducer, []);
+
+    const books = useSelector((state) => state);
+    const dispatch = useDispatch();
 
     const addBook = () => {
-        const action = handleBook(newBook);
+        const action = handleBook({ ...newBook, id: Date.now() });
         if (action) {
             dispatch(action);
             setNewBook({ title: '', author: '', genre: '' });
         }
     };
 
-    const deleteBook = (book) => {
-        const index = books.findIndex(
-            (b) => b.title === book.title && b.author === book.author
-        );
-        if (index !== -1) {
-            const action = handleDelete(index);
-            dispatch(action);
-        }
+    const deleteBook = (id) => {
+        const action = handleDelete(id);
+        dispatch(action);
     };
 
     const filteredBooks = useMemo(() => {
@@ -79,7 +76,7 @@ export default function Booklist() {
                             <li className="box-list-items">{`Author: ${book.author}`}</li>
                             <li className="box-list-items">{`Genre: ${book.genre}`}</li>
                             <li>
-                                <button onClick={() => deleteBook(book)} className="delete-button">
+                                <button onClick={() => deleteBook(book.id)} className="delete-button">
                                     Delete
                                 </button>
                             </li>

@@ -1,4 +1,6 @@
-import { ADD_BOOK, REMOVE_BOOK } from './boilerplate';
+export const ADD_BOOK = 'ADD_BOOK';
+export const REMOVE_BOOK = 'REMOVE_BOOK';
+
 
 export const handleBook = (newBook) => {
     if (newBook.title && newBook.author && newBook.genre) {
@@ -10,9 +12,10 @@ export const handleBook = (newBook) => {
     return null;
 };
 
-export const handleDelete = (index) => {
+
+export const handleDelete = (id) => {
     return {
         type: REMOVE_BOOK,
-        payload: index,
+        payload: id,
     };
 };
